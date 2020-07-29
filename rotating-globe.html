@@ -78,10 +78,19 @@
         }, 3000)
         
         chart.seriesContainer.events.on("down", function(){
-        if(animation){
-        animation.stop();
-        }
+            if(animation){
+            animation.stop();
+            }
         })
+
+        var circleSeries = chart.series.push(new am4maps.MapPolygonSeries())
+        var circleTemplate = circleSeries.mapPolygons.template;
+        circleTemplate.fill = am4core.color("#bf7569");
+        circleTemplate.strokeOpacity = 0;
+        circleTemplate.fillOpacity = 0.75;
+
+        var polygon = circleSeries.mapPolygons.create();
+        polygon.multiPolygon = am4maps.getCircle(-97.44, 38.94, 5);
         
         }); // end am4core.ready()
     </script>
